@@ -31,3 +31,12 @@ build/
 
 ### VS Code ###
 .vscode/
+# Hide application properties
+src/main/resources/application.properties
+
+# Ignore build files
+target/
+
+# Ignore IntelliJ files
+.idea/
+*.iml

@@ -1,0 +1,279 @@
+
+### ==========================================
+### REAL-TIME SPORTS COURT BOOKING SYSTEM
+### ==========================================
+
+@baseUrl = http://localhost:8080
+@date = 2026-10-15
+
+
+### ==========================================
+### 1. STUDENT REGISTRATION
+### ==========================================
+
+### Register Student 1
+POST {{baseUrl}}/students
+Content-Type: application/json
+
+{
+  "studentName": "Tharunika",
+  "email": "Tharunika@example.com",
+  "contactInfo": "9638527410"
+}
+
+
+### Register Student 2
+POST {{baseUrl}}/students
+Content-Type: application/json
+
+{
+  "studentName": "Arun",
+  "email": "arun@example.com",
+  "contactInfo": "9876543211"
+}
+
+
+### View All Students
+GET {{baseUrl}}/students
+
+
+### View Student By ID
+GET {{baseUrl}}/students/1
+
+
+### ==========================================
+### 2. SPORTS FACILITY MANAGEMENT
+### ==========================================
+
+### Add Badminton Court
+POST {{baseUrl}}/facilities
+Content-Type: application/json
+
+{
+  "facilityName": "Badminton Court 1",
+  "sportType": "Badminton",
+  "location": "Indoor Sports Complex",
+  "openingTime": "06:00:00",
+  "closingTime": "20:00:00",
+  "status": "AVAILABLE"
+}
+
+
+### Add Basketball Court
+POST {{baseUrl}}/facilities
+Content-Type: application/json
+
+{
+  "facilityName": "Basketball Court",
+  "sportType": "Basketball",
+  "location": "College Main Ground",
+  "openingTime": "06:00:00",
+  "closingTime": "19:00:00",
+  "status": "AVAILABLE"
+}
+
+
+### Add Cricket Nets
+POST {{baseUrl}}/facilities
+Content-Type: application/json
+
+{
+  "facilityName": "Cricket Practice Nets",
+  "sportType": "Cricket",
+  "location": "College Sports Ground",
+  "openingTime": "07:00:00",
+  "closingTime": "18:00:00",
+  "status": "AVAILABLE"
+}
+
+
+### Add Football Ground
+POST {{baseUrl}}/facilities
+Content-Type: application/json
+
+{
+  "facilityName": "Football Ground",
+  "sportType": "Football",
+  "location": "Outdoor Sports Complex",
+  "openingTime": "06:00:00",
+  "closingTime": "18:00:00",
+  "status": "AVAILABLE"
+}
+
+
+### View All Sports Facilities
+GET {{baseUrl}}/facilities
+
+
+### View Facility By ID
+GET {{baseUrl}}/facilities/1
+
+
+### Update Facility Details
+PUT {{baseUrl}}/facilities/1
+Content-Type: application/json
+
+{
+  "facilityName": "Badminton Court 1",
+  "sportType": "Badminton",
+  "location": "Indoor Sports Complex",
+  "openingTime": "06:00:00",
+  "closingTime": "21:00:00",
+  "status": "AVAILABLE"
+}
+
+
+### Set Facility Under Maintenance
+PUT {{baseUrl}}/facilities/2
+Content-Type: application/json
+
+{
+  "facilityName": "Basketball Court",
+  "sportType": "Basketball",
+  "location": "College Main Ground",
+  "openingTime": "06:00:00",
+  "closingTime": "19:00:00",
+  "status": "MAINTENANCE"
+}
+
+
+### ==========================================
+### 3. VIEW AVAILABLE TIME SLOTS
+### ==========================================
+
+### Check Available Slots - Badminton Court
+GET {{baseUrl}}/bookings/available/1?date={{date}}
+
+
+### Check Available Slots - Basketball Court
+GET {{baseUrl}}/bookings/available/2?date={{date}}
+
+
+### ==========================================
+### 4. BOOK SPORTS FACILITIES
+### ==========================================
+
+### Student 1 Books Badminton Court
+POST {{baseUrl}}/bookings
+Content-Type: application/json
+
+{
+  "studentId": 1,
+  "facilityId": 1,
+  "bookingDate": "{{date}}",
+  "startTime": "10:00:00",
+  "endTime": "11:00:00"
+}
+
+
+### Student 2 Books Different Time Slot
+POST {{baseUrl}}/bookings
+Content-Type: application/json
+
+{
+  "studentId": 2,
+  "facilityId": 1,
+  "bookingDate": "{{date}}",
+  "startTime": "11:00:00",
+  "endTime": "12:00:00"
+}
+
+
+### ==========================================
+### 5. DOUBLE BOOKING PREVENTION TEST
+### ==========================================
+
+### Try Booking Same Slot - Should Fail
+POST {{baseUrl}}/bookings
+Content-Type: application/json
+
+{
+  "studentId": 2,
+  "facilityId": 1,
+  "bookingDate": "{{date}}",
+  "startTime": "10:00:00",
+  "endTime": "11:00:00"
+}
+
+
+### Try Overlapping Booking - Should Fail
+POST {{baseUrl}}/bookings
+Content-Type: application/json
+
+{
+  "studentId": 2,
+  "facilityId": 1,
+  "bookingDate": "{{date}}",
+  "startTime": "10:30:00",
+  "endTime": "11:30:00"
+}
+
+
+### ==========================================
+### 6. VIEW BOOKINGS
+### ==========================================
+
+### View All Bookings
+GET {{baseUrl}}/bookings
+
+
+### View Student 1 Booking History
+GET {{baseUrl}}/bookings/student/1
+
+
+### View Student 2 Booking History
+GET {{baseUrl}}/bookings/student/2
+
+
+### View Facility Booking Schedule
+GET {{baseUrl}}/bookings/schedule/1?date={{date}}
+
+
+### ==========================================
+### 7. CANCEL BOOKING
+### ==========================================
+
+### Cancel Booking ID 1
+PUT {{baseUrl}}/bookings/1/cancel
+
+
+### Check Availability After Cancellation
+GET {{baseUrl}}/bookings/available/1?date={{date}}
+
+
+### Book the Cancelled Slot Again
+POST {{baseUrl}}/bookings
+Content-Type: application/json
+
+{
+  "studentId": 2,
+  "facilityId": 1,
+  "bookingDate": "{{date}}",
+  "startTime": "10:00:00",
+  "endTime": "11:00:00"
+}
+
+
+### ==========================================
+### 8. BOOKING COMPLETION
+### ==========================================
+
+### Mark Booking ID 2 As Completed
+### Works only after its scheduled end time
+PUT {{baseUrl}}/bookings/2/complete
+
+
+### ==========================================
+### 9. FINAL DATABASE VERIFICATION
+### ==========================================
+
+### View All Students
+GET {{baseUrl}}/students
+
+
+### View All Facilities
+GET {{baseUrl}}/facilities
+
+
+### View All Bookings
+GET {{baseUrl}}/bookings

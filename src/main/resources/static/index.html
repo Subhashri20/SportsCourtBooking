@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#14271e">
+    <title> Sports Court Booking</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<aside class="sidebar">
+    <a class="brand" href="#home">
+        <span class="brand-mark">S</span>
+        <span>SPORTS PORTAL</span>
+    </a>
+
+    <p class="nav-caption">WORKSPACE</p>
+
+    <nav class="side-nav">
+        <a class="active" href="#home"><span>⌂</span> Home</a>
+        <a href="#facilities"><span>▦</span> Facilities</a>
+        <a href="#facility-admin"><span>＋</span> Manage Facilities</a>
+        <a href="#register"><span>♙</span> Students</a>
+        <a href="#booking"><span>◷</span> Book a Court</a>
+        <a href="#history"><span>▤</span> Booking History</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+        <div class="sidebar-icon">⚡</div>
+        <strong>Ready to play?</strong>
+        <p>Find a court and get in the game.</p>
+        <a href="#booking">Make a booking ↗</a>
+    </div>
+
+    <div class="sidebar-footer">
+        <span class="online-dot"></span> Campus Sports Portal
+    </div>
+</aside>
+
+<main class="main-content">
+
+    <header class="topbar">
+        <div>
+            <span class="topbar-kicker">CAMPUS SPORTS MANAGEMENT</span>
+            <h2>Sports Dashboard</h2>
+        </div>
+        <a class="topbar-action" href="#facility-admin">＋ Add facility</a>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+      <span class="eyebrow">
+        <span class="online-dot"></span> YOUR GAME. YOUR COURT.
+      </span>
+
+            <h1>Make room for<br><span>your next win.</span></h1>
+
+            <p>
+                Discover sports facilities, find your perfect time slot,
+                and book your next game in just a few clicks.
+            </p>
+
+            <a class="primary-btn" href="#facilities">
+                Explore facilities <span>→</span>
+            </a>
+
+            <div class="hero-proof">
+                <span>🏸</span>
+                <span>🏀</span>
+                <span>⚽</span>
+                <span class="proof-text">One portal. Every game.</span>
+            </div>
+        </div>
+
+        <div class="hero-art">
+            <div class="art-orbit orbit-one"></div>
+            <div class="art-orbit orbit-two"></div>
+            <div class="art-ball">🏀</div>
+            <div class="art-label label-top">PLAY YOUR WAY</div>
+            <div class="art-label label-bottom">MOVE. PLAY. REPEAT.</div>
+            <div class="art-mini mini-one">🏸</div>
+            <div class="art-mini mini-two">⚽</div>
+        </div>
+    </section>
+
+    <section class="stats-grid" aria-label="Dashboard statistics">
+        <article class="stat-card">
+            <div class="stat-icon lime">▦</div>
+            <div>
+                <span>Sports facilities</span>
+                <strong id="facilityCount">0</strong>
+                <small>Courts in the portal</small>
+            </div>
+        </article>
+
+        <article class="stat-card">
+            <div class="stat-icon mint">♙</div>
+            <div>
+                <span>Registered students</span>
+                <strong id="studentCount">0</strong>
+                <small>Ready to book</small>
+            </div>
+        </article>
+
+        <article class="stat-card">
+            <div class="stat-icon peach">◷</div>
+            <div>
+                <span>Total bookings</span>
+                <strong id="bookingCount">0</strong>
+                <small>Reservations created</small>
+            </div>
+        </article>
+    </section>
+
+    <section class="section" id="facilities">
+        <div class="section-heading">
+            <div>
+                <span class="section-kicker">FIND YOUR SPORT</span>
+                <h2>Explore facilities</h2>
+                <p>Choose your court and get ready to play.</p>
+            </div>
+            <a class="text-link" href="#facility-admin">Manage facilities ↗</a>
+        </div>
+
+        <div class="facility-grid" id="facilityList">
+            <p class="helper">Loading facilities...</p>
+        </div>
+    </section>
+
+    <section class="section" id="facility-admin">
+        <div class="section-heading">
+            <div>
+                <span class="section-kicker">ADMIN WORKSPACE</span>
+                <h2 id="facilityFormTitle">Add sports facility</h2>
+                <p>Create a new court or update an existing facility.</p>
+            </div>
+        </div>
+
+        <div class="panel admin-panel">
+            <form id="facilityForm">
+                <input id="facilityId" type="hidden">
+
+                <div class="form-grid facility-form-grid">
+                    <label>
+                        Facility name
+                        <input id="facilityName" placeholder="e.g. Indoor Badminton Court" required maxlength="100">
+                    </label>
+
+                    <label>
+                        Sport type
+                        <select id="sportType" required>
+                            <option value="">Choose sport</option>
+                            <option>Badminton</option>
+                            <option>Basketball</option>
+                            <option>Football</option>
+                            <option>Cricket</option>
+                            <option>Tennis</option>
+                            <option>Volleyball</option>
+                            <option>Table Tennis</option>
+                            <option>Swimming</option>
+                            <option>Other</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Location
+                        <input id="facilityLocation" placeholder="e.g. Sports Complex, Block A" required maxlength="150">
+                    </label>
+
+                    <label>
+                        Opening time
+                        <input id="openingTime" type="time" value="06:00" required>
+                    </label>
+
+                    <label>
+                        Closing time
+                        <input id="closingTime" type="time" value="21:00" required>
+                    </label>
+
+                    <label>
+                        Facility status
+                        <select id="facilityStatus" required>
+                            <option value="AVAILABLE">Available</option>
+                            <option value="MAINTENANCE">Maintenance</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="facility-form-actions">
+                    <button class="primary-btn" id="saveFacilityBtn" type="submit">
+                        ＋ Add facility
+                    </button>
+                    <button class="secondary-btn" id="resetFacilityBtn" type="button">
+                        Clear form
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="section" id="register">
+        <div class="section-heading">
+            <div>
+                <span class="section-kicker">GET STARTED</span>
+                <h2>Student registration</h2>
+                <p>Register once to reserve sports facilities.</p>
+            </div>
+        </div>
+
+        <div class="panel">
+            <form id="studentForm">
+                <div class="form-grid">
+                    <label>
+                        Student name
+                        <input id="studentName" placeholder="Enter your name" required maxlength="100">
+                    </label>
+
+                    <label>
+                        Email address
+                        <input id="studentEmail" type="email" placeholder="student@college.edu" required>
+                    </label>
+
+                    <label>
+                        Contact number
+                        <input id="studentContact" placeholder="Enter contact number">
+                    </label>
+                </div>
+
+                <button class="primary-btn" type="submit">Register student →</button>
+            </form>
+
+            <p class="helper" id="studentInfo"></p>
+        </div>
+    </section>
+
+    <section class="section" id="booking">
+        <div class="section-heading">
+            <div>
+                <span class="section-kicker">RESERVE YOUR SPOT</span>
+                <h2>Book a court</h2>
+                <p>Select a student, facility and date to see available slots.</p>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="form-grid">
+                <label>
+                    Student ID
+                    <input id="bookingStudentId" type="number" min="1" placeholder="Your registered student ID">
+                </label>
+
+                <label>
+                    Sports facility
+                    <select id="facilitySelect">
+                        <option value="">Select a facility</option>
+                    </select>
+                </label>
+
+                <label>
+                    Booking date
+                    <input id="bookingDate" type="date">
+                </label>
+            </div>
+
+            <button class="secondary-btn" id="checkSlots" type="button">
+                Check availability
+            </button>
+
+            <h3 class="slot-heading">Available time slots</h3>
+            <div class="slots" id="slots">
+                <p class="helper">Select a facility and date first.</p>
+            </div>
+
+            <p class="helper selected-slot" id="selectedSlot">No slot selected.</p>
+
+            <button class="primary-btn" id="confirmBooking" type="button" disabled>
+                Confirm booking →
+            </button>
+        </div>
+    </section>
+
+    <section class="section" id="history">
+        <div class="section-heading">
+            <div>
+                <span class="section-kicker">YOUR RESERVATIONS</span>
+                <h2>Booking history</h2>
+                <p>View reservations and cancel upcoming bookings.</p>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="history-search">
+                <label>
+                    Student ID
+                    <input id="historyStudentId" type="number" min="1" placeholder="Enter your student ID">
+                </label>
+
+                <button class="primary-btn" id="loadHistory" type="button">
+                    View bookings
+                </button>
+            </div>
+
+            <div id="bookingHistory" class="booking-list"></div>
+        </div>
+    </section>
+
+    <footer class="page-footer">
+        <div>
+            <strong>Sports Court Booking.</strong>
+            <p>Move. Play. Repeat.</p>
+        </div>
+        <span>Sports Court Booking · Spring Boot + MySQL</span>
+    </footer>
+
+</main>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="/script.js" defer></script>
+</body>
+</html>
